@@ -1,0 +1,55 @@
+{
+	"info": {
+		"_postman_id": "7726e8a9-119f-436e-aad9-1b5920e61f6e",
+		"name": "AOP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add Demo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\" : 1,\r\n    \"name\" : \"Vipul\",\r\n    \"number\" : 123\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{home_url}}/demo/add",
+					"host": [
+						"{{home_url}}"
+					],
+					"path": [
+						"demo",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Demo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{home_url}}/demo/view/1",
+					"host": [
+						"{{home_url}}"
+					],
+					"path": [
+						"demo",
+						"view",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
