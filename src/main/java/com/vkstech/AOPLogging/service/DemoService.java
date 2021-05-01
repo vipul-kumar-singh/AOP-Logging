@@ -1,6 +1,5 @@
 package com.vkstech.AOPLogging.service;
 
-import com.vkstech.AOPLogging.dto.ResponseObject;
 import com.vkstech.AOPLogging.models.DemoEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.ResourceAccessException;
