@@ -29,4 +29,9 @@ public class DemoController {
         return new ResponseObject("DemoEntity fetched successfully", demoEntity);
     }
 
+    @GetMapping("view/all")
+    public ResponseObject viewDataList() {
+        return new ResponseObject("DemoEntity fetched successfully", demoService.getDemoEntityList());
+    }
+
 }

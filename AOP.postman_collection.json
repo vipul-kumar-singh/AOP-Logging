@@ -50,6 +50,25 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Get Demo List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{home_url}}/demo/view/all",
+					"host": [
+						"{{home_url}}"
+					],
+					"path": [
+						"demo",
+						"view",
+						"all"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

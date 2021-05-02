@@ -8,6 +8,10 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Aspect
@@ -15,7 +19,7 @@ import java.util.stream.IntStream;
 @Slf4j
 public class LoggingAspect {
 
-    @Pointcut("within(com.vkstech.AOPLogging.controller..*) || within(com.vkstech.AOPLogging.service..*)")
+    @Pointcut("(within(com.vkstech.AOPLogging.controller..*) || within(com.vkstech.AOPLogging.service..*)) && !@target(com.vkstech.AOPLogging.annotation.NoLogging)")
     public void logMethodsPointcut() {
     }
 
@@ -31,11 +35,13 @@ public class LoggingAspect {
         log.info("{} :: {}", className, methodName);
 
         //log parameters
-        String[] sigParamNames = methodSignature.getParameterNames();
-        Object[] signatureArgs = joinPoint.getArgs();
+        List<String> sigParamNames = Arrays.asList(methodSignature.getParameterNames());
+        List<Object> signatureArgs = Arrays.asList(joinPoint.getArgs());
 
-        IntStream.range(0, sigParamNames.length)
-                .forEach(i -> log.info("{} : {}", sigParamNames[i], signatureArgs[i]));
+        Map<String, Object> requestMap = IntStream.range(0, sigParamNames.size()).boxed()
+                .collect(Collectors.toMap(sigParamNames::get, signatureArgs::get));
+
+        requestMap.forEach((key, value) -> log.info("{} : {}", key, value));
 
         return joinPoint;
     }
